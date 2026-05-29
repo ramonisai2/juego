@@ -26,8 +26,8 @@ class World:
         return data
 
     def render(self, player):
-        player_chunk_x = int(player.x / CHUNK_SIZE)
-        player_chunk_z = int(player.z / CHUNK_SIZE)
+        player_chunk_x = math.floor(player.x / CHUNK_SIZE)
+        player_chunk_z = math.floor(player.z / CHUNK_SIZE)
         glColor3f(0.2, 0.8, 0.2)
         for key, chunk in self.chunks.items():
             cx, cz = key

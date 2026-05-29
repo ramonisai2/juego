@@ -15,8 +15,9 @@ class Enemy:
         dist = math.sqrt(dx*dx + dz*dz)
         if dist < 20:
             if dist > 1:
-                self.x += dx * self.speed
-                self.z += dz * self.speed
+                if dist > 0:
+            self.x += (dx / dist) * self.speed
+            self.z += (dz / dist) * self.speed
             else:
                 player.health -= 0.05
 

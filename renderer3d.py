@@ -14,7 +14,9 @@ def setup_camera(pos_x, pos_y, pos_z, look_x, look_y, look_z):
 def setup_fog(color_horizonte):
     glEnable(GL_FOG)
     glFogi(GL_FOG_MODE, GL_LINEAR)
-    glFogfv(GL_FOG_COLOR, color_horizonte + [1.0])
+    glFogfv(GL_FOG_COLOR, list(color_horizonte) + [1.0])
+    glFogf(GL_FOG_START, 5.0)
+    glFogf(GL_FOG_END, 25.0)
     glHint(GL_FOG_HINT, GL_NICEST)
 
 def disable_fog(): glDisable(GL_FOG)
@@ -30,4 +32,5 @@ def draw_bullet_cube(bx, by, bz, size=0.25):
     glVertex3fv(v[5]); glVertex3fv(v[4]); glVertex3fv(v[7]); glVertex3fv(v[6])
     glVertex3fv(v[4]); glVertex3fv(v[0]); glVertex3fv(v[3]); glVertex3fv(v[7])
     glVertex3fv(v[1]); glVertex3fv(v[5]); glVertex3fv(v[6]); glVertex3fv(v[2])
+    glVertex3fv(v[4]); glVertex3fv(v[5]); glVertex3fv(v[1]); glVertex3fv(v[0])
     glEnd()

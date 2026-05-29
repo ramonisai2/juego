@@ -1,0 +1,19 @@
+Cambios realizados automáticamente:
+
+1. renderer3d.py
+- Reparada configuración de niebla.
+- Añadida distancia de fog.
+- Reparada cara faltante del cubo de proyectil.
+
+2. enemy.py
+- Movimiento corregido usando normalización.
+- Evita velocidad absurda dependiendo de distancia.
+
+3. audio.py
+- Protección contra fallo de dispositivos de audio.
+
+4. world.py
+- Reparado cálculo de chunks negativos usando math.floor().
+
+5. Limpieza
+- Eliminados __pycache__.

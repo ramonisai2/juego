@@ -17,18 +17,84 @@ class Game:
             DOUBLEBUF | OPENGL
         )
 
-        gluPerspective(70, self.width/self.height, 0.1, 500.0)
-        glMatrixMode(GL_MODELVIEW)
-        glClearColor(0.0, 0.0, 0.0, 1.0)
+        # Viewport
+        glViewport(0, 0, self.width, self.height)
 
+        # Proyección
+        glMatrixMode(GL_PROJECTION)
+        glLoadIdentity()
+
+        gluPerspective(
+            70,
+            self.width / self.height,
+            0.1,
+            100.0
+        )
+
+        glMatrixMode(GL_MODELVIEW)
+
+        # Configuración OpenGL
         glEnable(GL_DEPTH_TEST)
 
+        glClearColor(0.1, 0.1, 0.15, 1)
+
         self.clock = pygame.time.Clock()
+
+        self.angle = 0
 
         self.running = True
 
     def update(self):
-        pass
+
+        self.angle += 1
+
+    def draw_cube(self):
+
+        glBegin(GL_QUADS)
+
+        # Frente
+        glColor3f(1, 0, 0)
+        glVertex3f(-1, -1,  1)
+        glVertex3f( 1, -1,  1)
+        glVertex3f( 1,  1,  1)
+        glVertex3f(-1,  1,  1)
+
+        # Atrás
+        glColor3f(0, 1, 0)
+        glVertex3f(-1, -1, -1)
+        glVertex3f(-1,  1, -1)
+        glVertex3f( 1,  1, -1)
+        glVertex3f( 1, -1, -1)
+
+        # Izquierda
+        glColor3f(0, 0, 1)
+        glVertex3f(-1, -1, -1)
+        glVertex3f(-1, -1,  1)
+        glVertex3f(-1,  1,  1)
+        glVertex3f(-1,  1, -1)
+
+        # Derecha
+        glColor3f(1, 1, 0)
+        glVertex3f(1, -1, -1)
+        glVertex3f(1,  1, -1)
+        glVertex3f(1,  1,  1)
+        glVertex3f(1, -1,  1)
+
+        # Arriba
+        glColor3f(1, 0, 1)
+        glVertex3f(-1, 1, -1)
+        glVertex3f(-1, 1,  1)
+        glVertex3f( 1, 1,  1)
+        glVertex3f( 1, 1, -1)
+
+        # Abajo
+        glColor3f(0, 1, 1)
+        glVertex3f(-1, -1, -1)
+        glVertex3f( 1, -1, -1)
+        glVertex3f( 1, -1,  1)
+        glVertex3f(-1, -1,  1)
+
+        glEnd()
 
     def render(self):
 
@@ -36,27 +102,11 @@ class Game:
 
         glLoadIdentity()
 
-        glTranslatef(0.0, 0.0, -5)
+        glTranslatef(0, 0, -5)
 
-        glBegin(GL_QUADS)
+        glRotatef(self.angle, 1, 1, 0)
 
-        # Frente
-        glColor3f(1, 0, 0)
-
-        glVertex3f(-1, -1, 1)
-        glVertex3f(1, -1, 1)
-        glVertex3f(1, 1, 1)
-        glVertex3f(-1, 1, 1)
-
-        # Atrás
-        glColor3f(0, 1, 0)
-
-        glVertex3f(-1, -1, -1)
-        glVertex3f(-1, 1, -1)
-        glVertex3f(1, 1, -1)
-        glVertex3f(1, -1, -1)
-
-        glEnd()
+        self.draw_cube()
 
         pygame.display.flip()
 
@@ -72,6 +122,7 @@ class Game:
                     self.running = False
 
             self.update()
+
             self.render()
 
         pygame.quit()

@@ -1,5 +1,8 @@
 import pygame
-pygame.mixer.init()
+try:
+    pygame.mixer.init()
+except Exception as e:
+    print(f'Audio no disponible: {e}')
 
 def play_music(path):
     pygame.mixer.music.load(path)
