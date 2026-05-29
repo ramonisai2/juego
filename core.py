@@ -18,6 +18,8 @@ class Game:
         )
 
         gluPerspective(70, self.width/self.height, 0.1, 500.0)
+        glMatrixMode(GL_MODELVIEW)
+        glClearColor(0.0, 0.0, 0.0, 1.0)
 
         glEnable(GL_DEPTH_TEST)
 
@@ -28,35 +30,35 @@ class Game:
     def update(self):
         pass
 
-def render(self):
+    def render(self):
 
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
-    glLoadIdentity()
+        glLoadIdentity()
 
-    glTranslatef(0.0, 0.0, -5)
+        glTranslatef(0.0, 0.0, -5)
 
-    glBegin(GL_QUADS)
+        glBegin(GL_QUADS)
 
-    # Frente
-    glColor3f(1, 0, 0)
+        # Frente
+        glColor3f(1, 0, 0)
 
-    glVertex3f(-1, -1, 1)
-    glVertex3f(1, -1, 1)
-    glVertex3f(1, 1, 1)
-    glVertex3f(-1, 1, 1)
+        glVertex3f(-1, -1, 1)
+        glVertex3f(1, -1, 1)
+        glVertex3f(1, 1, 1)
+        glVertex3f(-1, 1, 1)
 
-    # Atrás
-    glColor3f(0, 1, 0)
+        # Atrás
+        glColor3f(0, 1, 0)
 
-    glVertex3f(-1, -1, -1)
-    glVertex3f(-1, 1, -1)
-    glVertex3f(1, 1, -1)
-    glVertex3f(1, -1, -1)
+        glVertex3f(-1, -1, -1)
+        glVertex3f(-1, 1, -1)
+        glVertex3f(1, 1, -1)
+        glVertex3f(1, -1, -1)
 
-    glEnd()
+        glEnd()
 
-    pygame.display.flip()
+        pygame.display.flip()
 
     def run(self):
 
